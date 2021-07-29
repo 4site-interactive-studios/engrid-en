@@ -15,22 +15,6 @@
 <!-- Update as needed -->
 <link href="https://e-activist.com/ea-demo/frontend/pbAssets/build/css/enPage.css?v=3.62.0" rel="stylesheet" type="text/css">
 <script src="https://e-activist.com/ea-demo/frontend/pbAssets/build/js/enPage.js?v=3.62.0"></script>
-
-<!-- Immeditately get color on the page and hide the contents until engrid.css is rendered by the browser -->
-<style>
-  body {
-    background-color: #f3f3f3;
-    opacity: 0;
-  }
-  body[data-engrid-embedded] {
-    background-color: transparent !important;
-  }
-  .responsive-image,
-  .responsive-image img {
-    width: 100%;
-    height: auto;
-  }
-</style>
 <!-- Fake Data to Emulate EN Scripts -->
 <script>
   var pageJson = {
@@ -60,18 +44,7 @@
 
   </head>
   <body data-engrid-layout="centercenter1col" data-engrid-theme="engrid" data-engrid-add-input-placeholders="" data-engrid-errors="fancy">
-    <noscript>With Javascript disabled this page may not function as expected.</noscript>
-
-<!-- Quickly check to see if the page is in an iFrame and if so set the corresponding Custom Attribute so it can also set the background-color. Must be after <body> otherwise there will be a flash of color -->
-<script>
-  if (window.self !== window.top) {
-    document
-      .getElementsByTagName("BODY")[0]
-      .setAttribute("data-engrid-embedded", "");
-  }
-</script>
-
-<!-- Load ENGrid's CSS here so that it always comes after Engaging Networks CSS which gets injected into <head> -->
+    <!-- Load ENGrid's CSS here so that it always comes after Engaging Networks CSS which gets injected into <head> -->
 <link href="../engrid.css" rel="stylesheet" type="text/css">
 
 <!-- Body -->
@@ -963,64 +936,6 @@
     </div>
     <!-- Load ENGrid's Javascript Asynchronous -->
 <script async="" src="../engrid.js"></script>
-
-<!-- Start Render Critical Javascript -->
-<script>
-  window.addEventListener("DOMContentLoaded", (event) => {
-    // Move this DOM elements before the page renders
-    let inlineMonthlyUpsell = document.querySelectorAll(
-      ".move-after-transaction-recurrfreq"
-    )[0];
-    let recurrFrequencyField = document.querySelectorAll(
-      ".en__field--recurrfreq"
-    )[0];
-    if (inlineMonthlyUpsell && recurrFrequencyField) {
-      recurrFrequencyField.insertAdjacentElement(
-        "beforeend",
-        inlineMonthlyUpsell
-      );
-    }
-
-    // Move this DOM elements before the page renders
-    let inlineDonationAmountHeader = document.querySelectorAll(
-      ".move-before-transaction-donationamt"
-    )[0];
-    let donationAmtField = document.querySelectorAll(
-      ".en__field--donationAmt"
-    )[0];
-    if (inlineDonationAmountHeader && donationAmtField) {
-      donationAmtField.insertAdjacentElement(
-        "afterbegin",
-        inlineDonationAmountHeader
-      );
-    }
-
-    // 4Site's simplified image lazy loader
-    var srcDefer = document.querySelectorAll("img[data-src]");
-    for (var i = 0; i < srcDefer.length; i++) {
-      let dataSrc = srcDefer[i].getAttribute("data-src");
-      if (dataSrc) {
-        srcDefer[i].setAttribute("decoding", "async"); // Gets image processing off the main working thread
-        srcDefer[i].setAttribute("loading", "lazy"); // Lets the browser determine when the asset should be downloaded
-        srcDefer[i].setAttribute("src", dataSrc); // Sets the src which will cause the browser to retrieve the asset
-        srcDefer[i].setAttribute("data-engrid-data-src-processed", "true"); // Sets an attribute to mark that it has been processed by ENGrid
-        srcDefer[i].removeAttribute("data-src"); // Removes the data-source
-      }
-    }
-  });
-</script>
-<!-- End Render Critical Javascript -->
-
-<!-- Temporary Styles During QA -->
-<style>
-  /* Correct the sizing of the H2 Header that is moved inside a form component with JS before page render */
-  [data-engrid-theme="{{theme}}"] .en__field--donationAmt h2 {
-    margin-left: 0.5rem;
-    margin-right: 0;
-    width: calc(100% - 1rem);
-  }
-</style>
-
 
     <!-- Shared Assets -->
   </body>

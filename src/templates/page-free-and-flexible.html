@@ -11,7 +11,7 @@
   </head>
   <body
     data-engrid-layout="centercenter1col"
-    data-engrid-theme="engrid"
+    data-engrid-theme="flex2"
   >
     <include
       src="src/templates/includes/page-wrapper-elements/body.html"
@@ -20,14 +20,35 @@
     }'
     ></include>
     <div id="engrid">
+
+    <!-- Emulate Engaging Networks Advanced Row -->
+    <div class="en__component en__component--row en__component--advrow">
+      <div class="en__component en__component en__component--column en__component--advcolumn body-header">
+        <!-- $engrid_ff-logo -->
+        <!-- To support High DPI screens, the photo dimensions should be twice the display dimension -->
+        <img src="https://via.placeholder.com/400x200" width="200" height="100" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+      </div>
+      <div class="en__component en__component en__component--column en__component--advcolumn body-banner"></div>
+      <div class="en__component en__component en__component--column en__component--advcolumn body-main">
       <!-- Start EN Page Builder -->
       <include
         src="src/templates/includes/page-contents/page-contents-free-and-flexible.html"
         locals='{
         "theme": "engrid",
-    }'
+      }'
       ></include>
       <!-- End EN Page Builder -->
+      </div>
+      <div class="en__component en__component en__component--column en__component--advcolumn body-footer"></div>
+      <div class="en__component en__component en__component--column en__component--advcolumn page-backgroundImage">
+        <!-- $engrid_ff-backgroundImage -->
+        <img src="https://placeimg.com/1920/1080/nature" width="1920" height="1090" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+      </div>
+      <div class="en__component en__component en__component--column en__component--advcolumn page-customCode">
+        <!-- $engrid_ff-customCode -->
+      </div>
+    </div>
+      
     </div>
     <include
       src="src/templates/includes/page-wrapper-elements/footer.html"
