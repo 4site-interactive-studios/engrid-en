@@ -6098,6 +6098,12 @@ body:not(#en__pagebuilder) .body-banner:empty,body:not(#en__pagebuilder) .body-b
   [data-engrid-theme=flex2][data-engrid-layout=centerleft1col] div:not(.pboAdvancedRow__preview)>.en__component--advrow>.body-banner:before,[data-engrid-theme=flex2][data-engrid-layout=centerleft1col] div:not(.pboAdvancedRow__preview)>.en__component--advrow>.body-footer:before,[data-engrid-theme=flex2][data-engrid-layout=centerleft1col] div:not(.pboAdvancedRow__preview)>.en__component--advrow>.body-header:before,[data-engrid-theme=flex2][data-engrid-layout=centerleft1col] div:not(.pboAdvancedRow__preview)>.en__component--advrow>.body-main:before{
     box-shadow:none;
   }
+  [data-engrid-theme=flex2][data-engrid-layout=centerleft1col] .en__component--row--2{
+    flex-direction:column;
+  }
+  [data-engrid-theme=flex2][data-engrid-layout=centerleft1col] .en__component--row--2>.en__component--column{
+    width:100%;
+  }
   [data-engrid-theme=flex2][data-engrid-layout=centercenter1col]{
     --engrid__body_padding:0 1.5rem;
     --engrid__body_border-radius:0px;
@@ -6108,6 +6114,12 @@ body:not(#en__pagebuilder) .body-banner:empty,body:not(#en__pagebuilder) .body-b
   [data-engrid-theme=flex2][data-engrid-layout=centercenter1col] div:not(.pboAdvancedRow__preview)>.en__component--advrow>.body-banner:before,[data-engrid-theme=flex2][data-engrid-layout=centercenter1col] div:not(.pboAdvancedRow__preview)>.en__component--advrow>.body-footer:before,[data-engrid-theme=flex2][data-engrid-layout=centercenter1col] div:not(.pboAdvancedRow__preview)>.en__component--advrow>.body-header:before,[data-engrid-theme=flex2][data-engrid-layout=centercenter1col] div:not(.pboAdvancedRow__preview)>.en__component--advrow>.body-main:before{
     box-shadow:none;
   }
+  [data-engrid-theme=flex2][data-engrid-layout=centercenter1col] .en__component--row--2{
+    flex-direction:column;
+  }
+  [data-engrid-theme=flex2][data-engrid-layout=centercenter1col] .en__component--row--2>.en__component--column{
+    width:100%;
+  }
   [data-engrid-theme=flex2][data-engrid-layout=centerright1col]{
     --engrid__body_padding:0 1.5rem;
     --engrid__body_border-radius:0px;
@@ -6117,6 +6129,12 @@ body:not(#en__pagebuilder) .body-banner:empty,body:not(#en__pagebuilder) .body-b
   }
   [data-engrid-theme=flex2][data-engrid-layout=centerright1col] div:not(.pboAdvancedRow__preview)>.en__component--advrow>.body-banner:before,[data-engrid-theme=flex2][data-engrid-layout=centerright1col] div:not(.pboAdvancedRow__preview)>.en__component--advrow>.body-footer:before,[data-engrid-theme=flex2][data-engrid-layout=centerright1col] div:not(.pboAdvancedRow__preview)>.en__component--advrow>.body-header:before,[data-engrid-theme=flex2][data-engrid-layout=centerright1col] div:not(.pboAdvancedRow__preview)>.en__component--advrow>.body-main:before{
     box-shadow:none;
+  }
+  [data-engrid-theme=flex2][data-engrid-layout=centerright1col] .en__component--row--2{
+    flex-direction:column;
+  }
+  [data-engrid-theme=flex2][data-engrid-layout=centerright1col] .en__component--row--2>.en__component--column{
+    width:100%;
   }
 }
 
@@ -6132,6 +6150,14 @@ body:not(#en__pagebuilder) .body-banner:empty,body:not(#en__pagebuilder) .body-b
   box-shadow:none;
 }
 
+[data-engrid-theme=flex2][data-engrid-layout=leftleft1col] .en__component--row--2{
+  flex-direction:column;
+}
+
+[data-engrid-theme=flex2][data-engrid-layout=leftleft1col] .en__component--row--2>.en__component--column{
+  width:100%;
+}
+
 [data-engrid-theme=flex2][data-engrid-layout=rightright1col]{
   --engrid__body_padding:0 1.5rem;
   --engrid__body_border-radius:0px;
@@ -6144,6 +6170,14 @@ body:not(#en__pagebuilder) .body-banner:empty,body:not(#en__pagebuilder) .body-b
   box-shadow:none;
 }
 
+[data-engrid-theme=flex2][data-engrid-layout=rightright1col] .en__component--row--2{
+  flex-direction:column;
+}
+
+[data-engrid-theme=flex2][data-engrid-layout=rightright1col] .en__component--row--2>.en__component--column{
+  width:100%;
+}
+
 @media screen and (max-width:900px){
   [data-engrid-theme=flex2][data-engrid-layout=centercenter2col]{
     --engrid__body_padding:0 1.5rem;
@@ -6154,6 +6188,31 @@ body:not(#en__pagebuilder) .body-banner:empty,body:not(#en__pagebuilder) .body-b
   }
   [data-engrid-theme=flex2][data-engrid-layout=centercenter2col] div:not(.pboAdvancedRow__preview)>.en__component--advrow>.body-banner:before,[data-engrid-theme=flex2][data-engrid-layout=centercenter2col] div:not(.pboAdvancedRow__preview)>.en__component--advrow>.body-footer:before,[data-engrid-theme=flex2][data-engrid-layout=centercenter2col] div:not(.pboAdvancedRow__preview)>.en__component--advrow>.body-header:before,[data-engrid-theme=flex2][data-engrid-layout=centercenter2col] div:not(.pboAdvancedRow__preview)>.en__component--advrow>.body-main:before{
     box-shadow:none;
+  }
+  [data-engrid-theme=flex2][data-engrid-layout=centercenter2col] .en__component--row--2{
+    flex-direction:column;
+  }
+  [data-engrid-theme=flex2][data-engrid-layout=centercenter2col] .en__component--row--2>.en__component--column{
+    width:100%;
+  }
+}
+
+@media screen and (min-width:900px){
+  [data-engrid-theme=flex2][data-engrid-layout=centercenter2col] .en__component--row--2 .en__component--column--2>*{
+    background-color:#d3d3d3;
+    margin-left:1rem;
+    padding-left:1rem;
+    padding-right:1rem;
+  }
+  [data-engrid-theme=flex2][data-engrid-layout=centercenter2col] .en__component--row--2 .en__component--column--2>:first-child{
+    border-top-left-radius:var(--engrid__body_border-radius);
+    border-top-right-radius:var(--engrid__body_border-radius);
+    padding-top:1rem;
+  }
+  [data-engrid-theme=flex2][data-engrid-layout=centercenter2col] .en__component--row--2 .en__component--column--2>:last-child{
+    border-bottom-left-radius:var(--engrid__body_border-radius);
+    border-bottom-right-radius:var(--engrid__body_border-radius);
+    padding-bottom:1rem;
   }
 }
 
@@ -6194,12 +6253,13 @@ body:not(#en__pagebuilder) .body-banner:empty,body:not(#en__pagebuilder) .body-b
 
 [data-engrid-theme=flex2]#en__pagebuilder form>.messageOverlay.hidden:only-of-type div:before{
   align-items:center;
-  color:#999;
+  color:var(--error__color);
   content:"Add a Row";
   display:flex;
+  font-weight:700;
   justify-content:center;
   min-height:25px;
-  outline:1px dashed #999;
+  outline:dashed 1px var(--error__color);
   position:relative;
   top:-12.5px;
   visibility:visible;

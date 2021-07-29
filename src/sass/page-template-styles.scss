@@ -110,6 +110,15 @@
             box-shadow: none;
         }
 
+        // This is when any two column rows should stack
+        .en__component--row--2{
+            flex-direction: column;
+
+            > .en__component--column{
+                width: 100%;
+            }
+        }
+
     }
 
     &[data-engrid-layout="centerleft1col"]{
@@ -147,6 +156,29 @@
     &[data-engrid-layout="centercenter2col"] {
         @media screen and (max-width: $centercenter2col_content-column_min-width) {
             @include simplified-body-components;
+        }
+
+        @media screen and (min-width: $centercenter2col_content-column_min-width) {
+            .en__component--row--2 .en__component--column--2{
+                > *{
+                    margin-left: 1rem;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                    background-color: lightgrey;
+
+                    &:first-child{
+                        padding-top: 1rem;
+                        border-top-left-radius: var(--engrid__body_border-radius);
+                        border-top-right-radius: var(--engrid__body_border-radius);
+                    }
+    
+                    &:last-child{
+                        padding-bottom: 1rem;
+                        border-bottom-left-radius: var(--engrid__body_border-radius);
+                        border-bottom-right-radius: var(--engrid__body_border-radius);
+                    }
+                }
+            }
         }
 
         .body-main{
