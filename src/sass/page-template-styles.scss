@@ -1,14 +1,7 @@
 // The most broadly used CSS Custom Properties for quick theming.
 // Uncomment to use and reference engrid-scrips SASS files for more CSS Custom Properties.
 // All CSS Custom Properties should be scoped to the theme using CSS Data Attributes.
-[data-engrid-theme="flex2"]{
-    --engrid__page_background-color: lightgrey;
-    --engrid__body_padding: 0 2.5rem;
-    --engrid__body_border-radius: 6px;
-    --engrid__body-header_margin: 1rem 0 0 0;
-    --engrid__body-footer_margin: 0 0 3rem 0;
-    --engrid__body-footer_padding: 0 2.5rem 2rem 2.5rem;
-
+[data-engrid-theme="organizational-name"]{
     // TYPOGRAPHY DEFAULT
     // --default_font-family: var(--native-fonts__sans-serif);
     // --default_color: initial;
@@ -91,165 +84,41 @@
 }
 
 /* Add your custom theme styles here */
-[data-engrid-theme="flex2"]{
-
-    @mixin simplified-body-components{
-        --engrid__body_padding: 0 1.5rem;
-        --engrid__body_border-radius: 0px;
-        --engrid__body-header_margin: 0px;
-        --engrid__body-footer_margin: 0px;
-
-        // Set the background color to whatever the body main is using
-        --engrid__page_background-color: var(--engrid__body-main_background-color);
-
-        // Remove the box shadow
-        div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-header:before,
-        div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-banner:before,
-        div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-main:before,
-        div:not(.pboAdvancedRow__preview) > .en__component--advrow > .body-footer:before{
-            box-shadow: none;
-        }
-
-        // This is when any two column rows should stack
-        .en__component--row--2{
-            flex-direction: column;
-
-            > .en__component--column{
-                width: 100%;
-            }
-        }
-
+[data-engrid-theme="organizational-name"]{
+    @mixin until-mobile-l {
+        // STYLES
     }
 
+    @mixin from-mobile-l {
+        // STYLES
+    }
+
+    @mixin simplified-header {
+        // STLES
+    }
+
+    // Example Breakpoints Stylings (See engrid-scripts > _engrid-breakpoints.scss for more breakpoints)
+    &[data-engrid-layout] {
+        @include mq($until: mobile-l){
+            @include until-mobile-l;
+        }
+
+        @include mq($from: mobile-l){
+            @include from-mobile-l;
+        }
+    }
+    
+    // Example of Shared Layout Stylings
     &[data-engrid-layout="centerleft1col"]{
         @media screen and (max-width: $centerleft1col_content-column_min-width) {
-          @include simplified-body-components;
-        }
-    }
-
-    &[data-engrid-layout="centercenter1col"]{
-        @media screen and (max-width: $centercenter1col_content-column_min-width) {
-            @include simplified-body-components;
+            @include simplified-header;
         }
     }
 
     &[data-engrid-layout="centerright1col"]{
         @media screen and (max-width: $centerright1col_content-column_min-width) {
-            @include simplified-body-components;
+            @include simplified-header;
         }
     }
 
-    &[data-engrid-layout="leftleft1col"]{
-        @media screen and (max-width: $leftleft1col_content-column_min-width) {
-            //TBD
-        }
-        @include simplified-body-components;
-    }
-
-    &[data-engrid-layout="rightright1col"]{
-        @media screen and (max-width: $rightright1col_content-column_min-width) {
-            //TBD
-        }
-        @include simplified-body-components;
-    }
-
-    &[data-engrid-layout="centercenter2col"] {
-        @media screen and (max-width: $centercenter2col_content-column_min-width) {
-            @include simplified-body-components;
-        }
-
-        @media screen and (min-width: $centercenter2col_content-column_min-width) {
-            .en__component--row--2 .en__component--column--2{
-                > *{
-                    margin-left: 1rem;
-                    padding-left: 1rem;
-                    padding-right: 1rem;
-                    background-color: lightgrey;
-
-                    &:first-child{
-                        padding-top: 1rem;
-                        border-top-left-radius: var(--engrid__body_border-radius);
-                        border-top-right-radius: var(--engrid__body_border-radius);
-                    }
-    
-                    &:last-child{
-                        padding-bottom: 1rem;
-                        border-bottom-left-radius: var(--engrid__body_border-radius);
-                        border-bottom-right-radius: var(--engrid__body_border-radius);
-                    }
-                }
-            }
-        }
-
-        .body-main{
-            grid-column: bc;
-        }
-    }
-    
-    // Pad the img (presumably the logo) rather than the section. If for some reason a user wants to put their logo in another place, then this section will visually collapse without an image in it
-    .body-header img{
-        padding: 1rem;
-    }
-
-    // Force the visibility of the body-footer, even when empty
-    &:not(#en__pagebuilder) .body-footer:empty{
-        display: block;
-    }
-
-    &#en__pagebuilder{
-        // Helps with a strange offset that crops the bottom pixel of the main content area in page builder ( https://d.pr/v/gsuJB8 )
-        form{
-            inset: -1px auto auto 0px;
-        }
-
-        // Remove this margin because our page will always have other padding / margin
-        .en__container{
-            margin-top: 0;
-        }
-
-        // Hide these sections as there is no way to interact with them
-        .body-banner,
-        .page-backgroundImage,
-        .page-customCode{
-            display: none;
-        }
-
-        // Remove the outline width on these sections as there is no way to interact with them or they are a drop target for row widgets
-        .body-header,
-        .body-main,
-        .body-footer{
-            outline-width: 0;
-        }
-
-        // Remove the custom section text
-        .body-main .messageOverlay.hidden:only-child:before{
-            content: "";
-        }
-
-        // Helper stylings for if the last row is deleted
-        form > .messageOverlay.hidden:only-of-type div:before {
-            outline: dashed 1px var(--error__color);
-            visibility: visible;
-            content: "Add a Row";
-            display: flex;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-            color: var(--error__color);
-            min-height: 25px;
-            position: relative;
-            top: -12.5px;
-            font-weight: 700;
-        }
-    }
-
-    // Remove min-height from the form component
-    &:not([data-engrid-embedded]) form {
-        min-height: auto;
-    }
-    
-    // And add the min-height to the wrapped div
-    &:not([data-engrid-embedded]) #engrid {
-        min-height: 100vh;
-    }
 }
