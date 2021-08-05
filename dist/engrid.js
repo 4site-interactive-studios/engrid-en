@@ -4786,9 +4786,7 @@ class SrcDefer {
 
 
     for (let i = 0; i < this.videoBackground.length; i++) {
-      let video = this.videoBackground[i];
-      video.setAttribute("loading", "lazy"); // Lets the browser determine when the asset should be downloaded
-      // Process one or more defined sources in the <video> tag
+      let video = this.videoBackground[i]; // Process one or more defined sources in the <video> tag
 
       let videoBackgroundSource = video.querySelectorAll("source");
       let videoBackgroundSourcedDataSrc = this.videoBackgroundSource[i].getAttribute("data-src");
