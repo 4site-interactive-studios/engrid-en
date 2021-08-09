@@ -2864,7 +2864,6 @@ body:not(#en__pagebuilder) .click-to-expand.expanded .click-to-expand-text-wrapp
   --h1_color:initial;
   --h2_color:initial;
   --h3_color:initial;
-  --color_primary:initial;
   --a_color:initial;
   --a_color_hover:var(--a_color);
   --highlight__background-color:var(--color_primary);
@@ -5006,17 +5005,20 @@ body:not(#en__pagebuilder) .body-banner:empty,body:not(#en__pagebuilder) .body-b
   [data-engrid-layout=centercenter2col]:not(#en__pagebuilder) .page-backgroundImage{
     grid-row:page-start /  content-footerSpacer-end;
   }
-  [data-engrid-layout=centercenter2col] #engrid>.en__component--advrow .body-banner,[data-engrid-layout=centercenter2col] #engrid>.en__component--advrow .body-bannerOverlay,[data-engrid-layout=centercenter2col] #engrid>.en__component--advrow .body-title,[data-engrid-layout=centercenter2col] #engrid>.en__component--advrow .body-top,[data-engrid-layout=centercenter2col] form>.en__component--advrow .body-banner,[data-engrid-layout=centercenter2col] form>.en__component--advrow .body-bannerOverlay,[data-engrid-layout=centercenter2col] form>.en__component--advrow .body-title,[data-engrid-layout=centercenter2col] form>.en__component--advrow .body-top{
+  [data-engrid-layout=centercenter2col] form>.en__component--advrow .body-banner,[data-engrid-layout=centercenter2col] form>.en__component--advrow .body-bannerOverlay,[data-engrid-layout=centercenter2col] form>.en__component--advrow .body-title,[data-engrid-layout=centercenter2col] form>.en__component--advrow .body-top{
     grid-column:lbc;
   }
-  [data-engrid-layout=centercenter2col] #engrid>.en__component--advrow .body-bottom,[data-engrid-layout=centercenter2col] #engrid>.en__component--advrow .body-main,[data-engrid-layout=centercenter2col] #engrid>.en__component--advrow .body-side,[data-engrid-layout=centercenter2col] form>.en__component--advrow .body-bottom,[data-engrid-layout=centercenter2col] form>.en__component--advrow .body-main,[data-engrid-layout=centercenter2col] form>.en__component--advrow .body-side{
+  [data-engrid-layout=centercenter2col] form>.en__component--advrow .body-bottom,[data-engrid-layout=centercenter2col] form>.en__component--advrow .body-main,[data-engrid-layout=centercenter2col] form>.en__component--advrow .body-side{
     grid-column:rbc;
   }
-  [data-engrid-layout=centercenter2col] #engrid>.en__component--advrow .body-top,[data-engrid-layout=centercenter2col] form>.en__component--advrow .body-top{
+  [data-engrid-layout=centercenter2col] form>.en__component--advrow .body-top{
     grid-row:body-top-start /  body-main-end;
   }
-  [data-engrid-layout=centercenter2col] #engrid>.en__component--advrow .body-main,[data-engrid-layout=centercenter2col] form>.en__component--advrow .body-main{
+  [data-engrid-layout=centercenter2col] form>.en__component--advrow .body-main{
     grid-row:body-header-end /  body-main-end;
+  }
+  [data-engrid-layout=centercenter2col] #engrid>.en__component--advrow .en__component--column--2 .en__component--formblock,[data-engrid-layout=centercenter2col] #engrid>.en__component--advrow .en__component--column--2 .en__component--svblock{
+    margin-right:0;
   }
 }
 
@@ -5228,13 +5230,18 @@ body:not(#en__pagebuilder) .body-banner:empty,body:not(#en__pagebuilder) .body-b
 }
 [data-engrid-theme=flex2]{
   --engrid__page_background-color:#d3d3d3;
+  --engrid__body-header_padding:0 2.5rem;
   --engrid__body_padding:0 2.5rem;
   --engrid__body_border-radius:6px;
   --engrid__body-header_margin:1rem 0 0 0;
   --engrid__body-footer_margin:0 0 3rem 0;
   --engrid__body-footer_padding:0 2.5rem 2rem 2.5rem;
-  --engrid__page-backgroundImage_url:var(--background-image);
 }
+[data-engrid-theme=flex2] .en__component--row>.en__component--column>.en__component--copyblock:first-child>:first-child{
+  margin-top:0;
+  padding-top:0;
+}
+
 @media screen and (max-width:700px){
   [data-engrid-theme=flex2][data-engrid-layout=centerleft1col]{
     --engrid__body_padding:0 1.5rem;
@@ -5405,7 +5412,7 @@ body:not(#en__pagebuilder) .body-banner:empty,body:not(#en__pagebuilder) .body-b
   margin-top:0;
 }
 
-[data-engrid-theme=flex2]#en__pagebuilder .body-banner,[data-engrid-theme=flex2]#en__pagebuilder .page-backgroundImage,[data-engrid-theme=flex2]#en__pagebuilder .page-customCode{
+[data-engrid-theme=flex2]#en__pagebuilder .body-banner,[data-engrid-theme=flex2]#en__pagebuilder .page-backgroundImage{
   display:none;
 }
 
