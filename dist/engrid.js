@@ -2649,7 +2649,7 @@ class App extends engrid_ENGrid {
 
     this.shouldScroll = () => {
       // If you find a error, scroll
-      if (document.querySelector('.en__errorHeader')) {
+      if (document.querySelector(".en__errorHeader")) {
         return true;
       } // Try to match the iframe referrer URL by testing valid EN Page URLs
 
@@ -2685,7 +2685,7 @@ class App extends engrid_ENGrid {
 
   run() {
     // Enable debug if available is the first thing
-    if (this.options.Debug || App.getUrlParameter('debug') == 'true') App.setBodyData('debug', ''); // IE Warning
+    if (this.options.Debug || App.getUrlParameter("debug") == "true") App.setBodyData("debug", ""); // IE Warning
 
     new IE(); // Page Background
 
@@ -2717,9 +2717,9 @@ class App extends engrid_ENGrid {
 
     this._frequency.onFrequencyChange.subscribe(s => console.log(`Live Frequency: ${s}`));
 
-    this._form.onSubmit.subscribe(s => console.log('Submit: ', s));
+    this._form.onSubmit.subscribe(s => console.log("Submit: ", s));
 
-    this._form.onError.subscribe(s => console.log('Error:', s));
+    this._form.onError.subscribe(s => console.log("Error:", s));
 
     window.enOnSubmit = () => {
       this._form.dispatchSubmit();
@@ -2815,7 +2815,7 @@ class App extends engrid_ENGrid {
     }
 
     if (this.inIframe()) {
-      sendIframeFormStatus('submit');
+      sendIframeFormStatus("submit");
     }
   }
 
@@ -2847,8 +2847,13 @@ class App extends engrid_ENGrid {
 
   setDataAttributes() {
     // Add a body banner data attribute if it's empty
-    if (!document.querySelector('.body-banner img')) {
-      App.setBodyData('body-banner', 'empty');
+    if (!document.querySelector(".body-banner img")) {
+      App.setBodyData("body-banner", "empty");
+    } // Add a body title data attribute if it is empty
+
+
+    if (document.querySelector(".body-title *")) {
+      App.setBodyData("has-body-title", "");
     }
   }
 
