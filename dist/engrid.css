@@ -2142,11 +2142,15 @@ label{
 label a.label-tooltip{
   color:var(--label-color);
   font-weight:400;
-  padding-right:var(--fields_spacing-inline);
-  position:absolute;
+  margin-left:var(--fields_spacing-inline);
+  margin-right:var(--fields_spacing-inline);
   right:0;
   text-decoration:underline;
   text-transform:none;
+}
+
+label a.label-tooltip:last-child{
+  margin-right:0;
 }
 input,input.en__field__input{
   background-color:var(--input_background-color);
