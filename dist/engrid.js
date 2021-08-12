@@ -2846,14 +2846,137 @@ class App extends engrid_ENGrid {
 
 
   setDataAttributes() {
-    // Add a body banner data attribute if it's empty
+    // Add a body banner data attribute if the banner contains no image
+    // @TODO Should this account for video?
+    // @TODO Should we merge this with the script that checks the background image?
     if (!document.querySelector(".body-banner img")) {
       App.setBodyData("body-banner", "empty");
-    } // Add a body title data attribute if it is empty
+    } // Add a page-alert data attribute if it is empty
+
+
+    if (document.querySelector(".page-alert *")) {
+      App.setBodyData("has-page-alert", "");
+    } else {
+      App.setBodyData("does-not-have-page-alert", "");
+    } // Add a content-header data attribute if it is empty
+
+
+    if (document.querySelector(".content-header *")) {
+      App.setBodyData("has-content-header", "");
+    } else {
+      App.setBodyData("does-not-have-content-header", "");
+    } // Add a body-headerOutside data attribute if it is empty
+
+
+    if (document.querySelector(".body-headerOutside *")) {
+      App.setBodyData("has-body-headerOutside", "");
+    } else {
+      App.setBodyData("does-not-have-body-headerOutside", "");
+    } // Add a body-header data attribute if it is empty
+
+
+    if (document.querySelector(".body-header *")) {
+      App.setBodyData("has-body-header", "");
+    } else {
+      App.setBodyData("does-not-have-body-header", "");
+    } // Add a body-title data attribute if it is empty
 
 
     if (document.querySelector(".body-title *")) {
       App.setBodyData("has-body-title", "");
+    } else {
+      App.setBodyData("does-not-have-body-title", "");
+    } // Add a body-banner data attribute if it is empty
+
+
+    if (document.querySelector(".body-banner *")) {
+      App.setBodyData("has-body-banner", "");
+    } else {
+      App.setBodyData("does-not-have-body-banner", "");
+    } // Add a body-bannerOverlay data attribute if it is empty
+
+
+    if (document.querySelector(".body-bannerOverlay *")) {
+      App.setBodyData("has-body-bannerOverlay", "");
+    } else {
+      App.setBodyData("does-not-have-body-bannerOverlay", "");
+    } // Add a body-top data attribute if it is empty
+
+
+    if (document.querySelector(".body-top *")) {
+      App.setBodyData("has-body-top", "");
+    } else {
+      App.setBodyData("does-not-have-body-top", "");
+    } // Add a body-main data attribute if it is empty
+
+
+    if (document.querySelector(".body-main *")) {
+      App.setBodyData("has-body-main", "");
+    } else {
+      App.setBodyData("does-not-have-body-main", "");
+    } // Add a body-bottom data attribute if it is empty
+
+
+    if (document.querySelector(".body-bottom *")) {
+      App.setBodyData("has-body-bottom", "");
+    } else {
+      App.setBodyData("does-not-have-body-bottom", "");
+    } // Add a body-footer data attribute if it is empty
+
+
+    if (document.querySelector(".body-footer *")) {
+      App.setBodyData("has-body-footer", "");
+    } else {
+      App.setBodyData("does-not-have-body-footer", "");
+    } // Add a body-footerOutside data attribute if it is empty
+
+
+    if (document.querySelector(".body-footerOutside *")) {
+      App.setBodyData("has-body-footerOutside", "");
+    } else {
+      App.setBodyData("does-not-have-body-footerOutside", "");
+    } // Add a content-footerSpacer data attribute if it is empty
+
+
+    if (document.querySelector(".content-footerSpacer *")) {
+      App.setBodyData("has-content-footerSpacer", "");
+    } else {
+      App.setBodyData("does-not-have-content-footerSpacer", "");
+    } // Add a content-preFooter data attribute if it is empty
+
+
+    if (document.querySelector(".content-preFooter *")) {
+      App.setBodyData("has-content-preFooter", "");
+    } else {
+      App.setBodyData("does-not-have-content-preFooter", "");
+    } // Add a content-footer data attribute if it is empty
+
+
+    if (document.querySelector(".content-footer *")) {
+      App.setBodyData("has-content-footer", "");
+    } else {
+      App.setBodyData("does-not-have-content-footer", "");
+    } // Add a page-backgroundImage data attribute if it is empty
+
+
+    if (document.querySelector(".page-backgroundImage *")) {
+      App.setBodyData("has-page-backgroundImage", "");
+    } else {
+      App.setBodyData("does-not-have-page-backgroundImage", "");
+    } // Add a page-backgroundImageOverlay data attribute if it is empty
+
+
+    if (document.querySelector(".page-backgroundImageOverlay *")) {
+      App.setBodyData("has-page-backgroundImageOverlay", "");
+    } else {
+      App.setBodyData("does-not-have-page-backgroundImageOverlay", "");
+    } // Add a page-customCode data attribute if it is empty
+
+
+    if (document.querySelector(".page-customCode *")) {
+      App.setBodyData("has-page-customCode", "");
+    } else {
+      App.setBodyData("does-not-have-page-customCode", "");
     }
   }
 
@@ -4386,7 +4509,7 @@ class UpsellLightbox {
                 </p>
                 <!-- YES BUTTON -->
                 <div id="upsellYesButton">
-                  <a href="#">
+                  <a class="pseduo__en__submit_button" href="#">
                     <div>
                     <span class='loader-wrapper'><span class='loader loader-quart'></span></span>
                     <span class='label'>${yes}</span>
@@ -4803,38 +4926,43 @@ class SrcDefer {
     for (let i = 0; i < this.videoBackground.length; i++) {
       let video = this.videoBackground[i]; // Process one or more defined sources in the <video> tag
 
-      let videoBackgroundSource = video.querySelectorAll("source");
-      let videoBackgroundSourcedDataSrc = this.videoBackgroundSource[i].getAttribute("data-src");
+      this.videoBackgroundSource = video.querySelectorAll("source");
 
-      if (videoBackgroundSource) {
-        for (let i = 0; i < this.videoBackgroundSource.length; i++) {
-          // Construct the <video> tags new <source>
-          if (videoBackgroundSourcedDataSrc) {
-            this.videoBackgroundSource[i].setAttribute("src", videoBackgroundSourcedDataSrc);
-            this.videoBackgroundSource[i].setAttribute("data-engrid-data-src-processed", "true"); // Sets an attribute to mark that it has been processed by ENGrid
+      if (this.videoBackgroundSource) {
+        // loop through all the sources
+        for (let j = 0; j < this.videoBackgroundSource.length; j++) {
+          let videoSource = this.videoBackgroundSource[j];
 
-            this.videoBackgroundSource[i].removeAttribute("data-src"); // Removes the data-source
-          } // To get the browser to request the video asset defined we need to remove the <video> tag and re-add it
+          if (videoSource) {
+            let videoBackgroundSourcedDataSrc = videoSource.getAttribute("data-src");
 
+            if (videoBackgroundSourcedDataSrc) {
+              videoSource.setAttribute("src", videoBackgroundSourcedDataSrc);
+              videoSource.setAttribute("data-engrid-data-src-processed", "true"); // Sets an attribute to mark that it has been processed by ENGrid
 
-          let videoBackgroundParent = video.parentNode; // Determine the parent of the <video> tag
-
-          let copyOfVideoBackground = video; // Copy the <video> tag
-
-          if (videoBackgroundParent && copyOfVideoBackground) {
-            videoBackgroundParent.replaceChild(copyOfVideoBackground, this.videoBackground[i]); // Replace the <video> with the copy of itself
-            // Update the video to auto play, mute, loop
-
-            video.muted = true; // Mute the video by default
-
-            video.controls = false; // Hide the browser controls
-
-            video.loop = true; // Loop the video
-
-            video.playsInline = true; // Encourage the user agent to display video content within the element's playback area
-
-            video.play(); // Plays the video
+              videoSource.removeAttribute("data-src"); // Removes the data-source
+            }
           }
+        } // To get the browser to request the video asset defined we need to remove the <video> tag and re-add it
+
+
+        let videoBackgroundParent = video.parentNode; // Determine the parent of the <video> tag
+
+        let copyOfVideoBackground = video; // Copy the <video> tag
+
+        if (videoBackgroundParent && copyOfVideoBackground) {
+          videoBackgroundParent.replaceChild(copyOfVideoBackground, video); // Replace the <video> with the copy of itself
+          // Update the video to auto play, mute, loop
+
+          video.muted = true; // Mute the video by default
+
+          video.controls = false; // Hide the browser controls
+
+          video.loop = true; // Loop the video
+
+          video.playsInline = true; // Encourage the user agent to display video content within the element's playback area
+
+          video.play(); // Plays the video
         }
       }
     }
