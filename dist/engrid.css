@@ -2040,7 +2040,7 @@ a:focus,a:hover{
   --checkbox_font-weight:700;
   --checkbox_width:1.4rem;
   --checkbox_height:1.4rem;
-  --checkbox_content_checked:"✓";
+  --checkbox_content_checked:"\2713";
   --select_font-family:var(--input_font-family);
   --select_font-size:var(--input_font-size);
   --select_font-weight:initial;
@@ -5299,7 +5299,8 @@ body:not(#en__pagebuilder)[data-engrid-does-not-have-body-banner] .en__component
 [data-engrid-theme=flex2][data-highlight-required-fields] .en__mandatory>label:after{
   color:var(--error__color);
   content:"*";
-  margin-left:var(--fields_spacing-inline);
+  margin-left:.25ch;
+  margin-right:auto;
 }
 
 [data-engrid-theme=flex2] .en__component--row>.en__component--column>.en__component--copyblock:first-child>:first-child{
