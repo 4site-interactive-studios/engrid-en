@@ -8,6 +8,7 @@
 		}
 	],
 	"settings": {
-		"liveServer.settings.multiRootWorkspaceName": "engrid-en"
+		"liveServer.settings.multiRootWorkspaceName": "engrid-en",
+		"liveServer.settings.port": 5501
 	}
 }
