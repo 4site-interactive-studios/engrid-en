@@ -1,6 +1,6 @@
 ![#](https://raw.githubusercontent.com/4site-interactive-studios/engrid/master/hero.jpg)
 
-# 4Site's ENGrid Page Template Framework
+# 4Site's ENgrid Page Template Framework
 
 <img align="right" width="200" height="200" src="https://engagingnetworks.academy/wp-content/uploads/2019/09/D-D-Partner.png">
 
