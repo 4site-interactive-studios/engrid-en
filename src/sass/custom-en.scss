@@ -1,0 +1,307 @@
+/* File with changes from Engaging Networks */
+
+/* ===Additions-CHP-OctNov-2021=== */
+/* RADIOS */
+/* ensure radios don't squash at narrow screens */
+input[type="radio"] + label:before {
+  min-width: var(--radio_width);
+}
+/* DIGITAL WALLETS */
+/* button fix */
+#en__digitalWallet {
+  width: 100%;
+}
+/* OPT IN */
+div:not(.pboFB__sgEnable) > input[type="checkbox"] + label:before {
+  align-self: flex-start;
+}
+/* formatted */
+.en__field__label--item p {
+  margin: 0 0 5px;
+}
+/* TWO-COLUMN TWEAKS */
+[data-engrid-theme="flex2"][data-engrid-layout="centercenter2col"]
+  .en__ticket__remaining {
+  margin-left: 1rem;
+}
+@media screen and (max-width: 900px) {
+  [data-engrid-theme="flex2"][data-engrid-layout="centercenter2col"]
+    .en__component--row--2
+    .en__component.en__component--copyblock {
+    margin-left: calc(var(--fields_spacing-inline) * -1);
+    margin-right: calc(var(--fields_spacing-inline) * -1);
+  }
+  [data-engrid-theme="flex2"][data-engrid-layout="centercenter2col"]
+    .en__component--row--2
+    .en__component.en__component--copyblock
+    > * {
+    padding-left: var(--fields_spacing-inline);
+    padding-right: var(--fields_spacing-inline);
+  }
+  [data-engrid-theme="flex2"][data-engrid-layout="centercenter2col"]
+    .en__component--advrow
+    > .en__component--advcolumn {
+    width: 100%;
+  }
+  [data-engrid-theme="flex2"][data-engrid-layout="centercenter2col"]
+    .en__component--advrow {
+    flex-direction: column;
+  }
+}
+[data-engrid-theme="flex2"][data-engrid-layout="centercenter2col"]
+  .en__component--row--2
+  .en__component--column--2
+  .en__component--copyblock
+  > *:not(ol):not(ul) {
+  padding-bottom: var(--default_font-size);
+  margin-bottom: 0;
+  padding-left: var(--fields_spacing-inline);
+  padding-right: var(--fields_spacing-inline);
+}
+
+/* SOCIAL */
+.en__component--socialshareblock:before {
+  content: none !important;
+}
+/* EMAIL TO TARGET */
+input.en__contactDetails__select {
+  width: auto;
+}
+/* TWEET TO TARGET */
+.en__twitterTarget__image {
+  width: 3.75rem !important;
+}
+/* EVENTS */
+/* Registrant fields */
+.en__field--registrant .en__field__label {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+/* Stop issue with + - buttons vanishing at small screens */
+.en__ticket__selector {
+  min-width: 100px;
+}
+@media only screen and (max-width: 450px) {
+  .en__additional__amount,
+  .en__ticket__field--cost,
+  .en__ticket__field--quantity,
+  .en__ticket__quantity,
+  .en__ticket__remaining {
+    padding: 0.875rem 0.5rem;
+  }
+}
+/* DONATIONS */
+/* Recurring payment boxes - half width */
+[data-engrid-theme] {
+  --recurring-pay__button_count: 2;
+  --recurring-pay__flex-grow: initial;
+}
+/* Recurring pay */
+.radio-to-buttons_recurrpay
+  .en__field--recurrpay.en__field--radio
+  > .en__field__element
+  .en__field__item {
+  flex-basis: calc(100% / var(--recurring-pay__button_count));
+  flex-grow: var(--recurring-pay__flex-grow);
+}
+/* Other payment box - style */
+input.en__field__input.en__field__input--other {
+  background-color: var(--input_background-color) !important;
+  color: var(--input_color) !important;
+  border-color: var(--input_border-color) !important;
+}
+/* Credit card number */
+.payment-information .en__field--ccnumber {
+  flex-basis: 100% !important;
+  margin-left: 0 !important;
+}
+/* PERSONAL INFORMATION */
+@media (min-width: 41.25em) {
+  #engrid .en__field--radio,
+  #engrid .en__field--checkbox {
+    flex-basis: 100% !important;
+  }
+  /* Safari 5.1 Windows */
+  #engrid .en__component--formblock.personal-information > .en__field {
+    display: inline-block;
+    width: 48%;
+  }
+  #engrid
+    .en__component--formblock.personal-information
+    > .en__field:nth-child(3) {
+    width: 100%;
+  }
+  /* Modern Browsers */
+  #engrid .en__component--formblock.personal-information {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  #engrid .en__component--formblock.personal-information > .en__field {
+    -ms-flex-preferred-size: 48%;
+    flex-basis: 48%;
+  }
+  #engrid
+    .en__component--formblock.personal-information
+    > .en__field:nth-child(3) {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+  }
+  #engrid
+    .en__component--formblock.personal-information
+    > .en__field:nth-child(1) {
+    margin-right: 0.5rem;
+  }
+  #engrid
+    .en__component--formblock.personal-information
+    > .en__field:nth-child(2) {
+    margin-left: 0.5rem;
+  }
+}
+/* Copy Block Component: Personal Information Title */
+#engrid .en__component--copyblock.personal-information-title > h2 {
+  margin-left: 2rem;
+}
+#engrid .en__component--copyblock.personal-information-title > h2:before {
+  content: "";
+  display: inline-block;
+  vertical-align: baseline;
+  margin-left: -2rem;
+  margin-right: 0.5rem;
+  height: 1.75rem;
+  width: 1.75rem;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABe0lEQVRYR+2W4TEEQRCFv4sAGZABESACMkAEZIAMiAAZEAEiIANCIALqq9s9e1e7Nd2zVfbPddXV1NZ1v37zeqanZ0xss4nzsyZQo8ABcAK4bjcl/ARegIdmDVc2S+AUuCugnwH3UQYZAu72Iwi8A6hK0TIEboDzIuLc4Ra4iPhmCFjj/Qgo8NqckaJ7hsAXsFFEnDvouxXxzRD4iQB2fELYIacGdE1gcgUmvwV2N1twxGzJds2iZQ7hLvBWRJw77AHvEd8MAfEiZQg3IQGzBHwP3NlQQ/oGVCr0DtQQMMYEKrFKwuQ+0SHp2/JkFWjj+l5GW68tOGW1BEyy2heqsKJBm81LqMSWwG/Xrim9CrhaIg9jUZESAe/yEXCc0vXP+RHwZ1/otSEC7tTRq535KvMvwrwVjmoqs2R9BK6Ay7EZB+LFvu7+t0ogM3bVclwa17oElP25FjUZd9iWo0vAw+KB+w97ag92l0Bm5htLcjEzlq7h2ETF+MkJ/AKQCTkh5Nk4+QAAAABJRU5ErkJggg==");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+/* Form Block Component: Address */
+#engrid .en__component--formblock.address > .en__field--select {
+  width: 100%;
+}
+@media (min-width: 41.25em) {
+  /* Safari 5.1 Windows */
+  #engrid .en__component--formblock.address > .en__field {
+    display: inline-block;
+    width: 48%;
+  }
+  /* Modern Browsers */
+  #engrid .en__component--formblock.address {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  #engrid .en__component--formblock.address > .en__field {
+    -ms-flex-preferred-size: 48%;
+    flex-basis: 48%;
+  }
+  #engrid .en__component--formblock.address > .en__field:nth-child(odd) {
+    margin-right: 0.5rem;
+  }
+  #engrid .en__component--formblock.address > .en__field:nth-child(even) {
+    margin-left: 0.5rem;
+  }
+}
+/* Copy Block Component: Address Title */
+#engrid .en__component--copyblock.address-title > h2 {
+  margin-left: 2rem;
+}
+#engrid .en__component--copyblock.address-title > h2:before {
+  content: "";
+  display: inline-block;
+  vertical-align: bottom;
+  margin-left: -2rem;
+  margin-right: 0.5rem;
+  height: 2rem;
+  width: 1.75rem;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAB6UlEQVRYR6WX/TFlQRDFz4uADKwIEAEbASJABIgAEVgRIAJEgAgQATIgAupXdUeN2Zme7rld9f66fbrP9PdbKC77kjYlrU8/LDxPv1tJdxGTi4DyjqRzSX86mDdJx5Ig0xUvgX+SDrvWfiuAgYgpHgIjzpPTC0lHFoMeAcJ+UzGA4asp73ymHnC0V9HdtdLRI0A+VzKjn5K2MselP4g8SFrKPmBjtRUFiwDVflkANwznSRUSTwWuGQWLACHOQ9rNZ+a0xF5L4kH/iUWA3l7LEJ7Xt6KALfAhAl+Fdq9eSuMuvGXUZcBoMRc+QmBOCuBZ9WURoJ2Y+e6hYhTh49S+oRooKxmwJwq1Nhzqgtoc+JD0tzOI7iUtF089mCZnKAJsvddGkREd5gLthfBqllW116dJyEQMEUC5nAVG0Tc/vWR3Q5gAC4YbYI6wktmoVekNFysNXlIsomr4m71ZWOay2fZ6K/Q4z1jpTelFACDrl8oeETqGeTKLAOByKHnINIdPDvZEYDQK3dd7ayARjkTB9foogUhHmJU/koKEOZV00imAM0noucRbA8kYM57pmB+quaP3aeqxM1wSJdArSFfhzUlBwtb+rESO1h8OIxEAXKYiHPrEYJQA+Pzw8Bwq1ZqYQwCDaf9zHwzJN9UKWyGqF8gUAAAAAElFTkSuQmCC");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+/* Form Block Component: Payment Information */
+@media (min-width: 41.25em) {
+  /* Safari 5.1 Windows */
+  #engrid .en__component--formblock.payment-information > .en__field {
+    display: inline-block;
+    width: 48%;
+  }
+  /* Modern Browsers */
+  #engrid .en__component--formblock.payment-information {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  #engrid .en__component--formblock.payment-information > .en__field {
+    -ms-flex-preferred-size: 48%;
+    flex-basis: 48%;
+  }
+  #engrid
+    .en__component--formblock.payment-information
+    > .en__field:nth-child(odd) {
+    margin-right: 0.5rem;
+  }
+  #engrid
+    .en__component--formblock.payment-information
+    > .en__field:nth-child(even) {
+    margin-left: 0.5rem;
+  }
+}
+/* Copy Block Component: Payment Information Title */
+#engrid .en__component--copyblock.payment-information-title > h2 {
+  margin-left: 2rem;
+}
+#engrid .en__component--copyblock.payment-information-title > h2:before {
+  content: "";
+  display: inline-block;
+  vertical-align: baseline;
+  margin-left: -2rem;
+  margin-right: 0.5rem;
+  height: 1.75rem;
+  width: 2rem;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAtElEQVRYR+2WwQ3CMAxFXyfoCGUEOgkrsAEjEDZghG5URmg26AYgR40ERVVQgpwe7FsOzn/6tmw3VI6msj4GEB24AyfgoFSSCRiAmwCI+EVJeC0TAGagBXrgoQRyBEZgEoDnIqrdkEHXAN4dUCr/p4wBmAO7csAGkTkQHVgvp9Q7d4JuLqOU4L+2pwHs5x6oeZJ56XwHXHNbuTAvHKUSAnEGusIPf033y1nutKffF6ABVHfgBWDaOs5lsuVZAAAAAElFTkSuQmCC");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+/* ECARDS */
+.en__ecardrecipients
+  .en__ecardrecipients__list
+  .en__ecardrecipients__recipient
+  .ecardrecipient__remove
+  button {
+  color: white;
+  font-weight: 900;
+  background-color: var(--error__color);
+}
+.en__ecardrecipients__detail input {
+  width: calc(100% - 40px);
+}
+/* LOGO LINK */
+.logo-show-link {
+  display: none !important;
+}
+.logo-show-nolink + a.logo-link {
+  display: none !important;
+}
+
+/* FIX QUESTION OVERLAY IN THANKS EMAILS */
+#en__pagebuilder
+  .email__toolbars__questiondata
+  > .messageOverlay.hidden:only-child {
+  visibility: hidden;
+}
