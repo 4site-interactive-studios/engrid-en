@@ -17,7 +17,7 @@
  *
  *  ENGRID PAGE TEMPLATE ASSETS
  *
- *  Date: Monday, August 5, 2024 @ 24:03:57 ET
+ *  Date: Monday, August 5, 2024 @ 24:28:43 ET
  *  By: fernando
  *  ENGrid styles: v0.18.18
  *  ENGrid scripts: v0.18.18
@@ -21339,7 +21339,7 @@ class src_App {
 const options = {
   CurrencySymbol: "$",
   CurrencySeparator: ".",
-  Debug: true,
+  Debug: engrid_ENGrid.getUrlParameter("debug") == "true" ? true : false,
   onLoad: () => console.log("EN Free & Flexible Theme Loaded"),
   onResize: () => console.log("EN Free & Flexible Theme Window Resized")
 };

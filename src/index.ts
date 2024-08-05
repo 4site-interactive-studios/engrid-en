@@ -431,7 +431,7 @@ class App {
 const options: Options = {
   CurrencySymbol: "$",
   CurrencySeparator: ".",
-  Debug: true,
+  Debug: ENGrid.getUrlParameter("debug") == "true" ? true : false,
   onLoad: () => console.log("EN Free & Flexible Theme Loaded"),
   onResize: () => console.log("EN Free & Flexible Theme Window Resized"),
 };
