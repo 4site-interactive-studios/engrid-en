@@ -17,7 +17,7 @@
  *
  *  ENGRID PAGE TEMPLATE ASSETS
  *
- *  Date: Monday, August 5, 2024 @ 24:28:43 ET
+ *  Date: Monday, August 5, 2024 @ 22:54:28 ET
  *  By: fernando
  *  ENGrid styles: v0.18.18
  *  ENGrid scripts: v0.18.18
@@ -21038,15 +21038,8 @@ function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbol
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 
 
-
 class src_App {
   constructor(options) {
-    // Events
-    _defineProperty(this, "_form", EnForm.getInstance());
-    _defineProperty(this, "_amount", DonationAmount.getInstance("transaction.donationAmt", "transaction.donationAmt.other"));
-    _defineProperty(this, "_frequency", DonationFrequency.getInstance());
-    _defineProperty(this, "_country", Country.getInstance());
-    _defineProperty(this, "_dataLayer", void 0);
     _defineProperty(this, "options", void 0);
     _defineProperty(this, "isOneClickDonation", false);
     _defineProperty(this, "logger", new EngridLogger("App", "black", "white", "🍏"));
@@ -21055,7 +21048,6 @@ class src_App {
     this.isOneClickDonation = engrid_ENGrid.getField("donationLogId") ? true : false;
     // Add Options to window
     window.EngridOptions = this.options;
-    this._dataLayer = DataLayer.getInstance();
     if (loader.reload()) return;
     // Turn Debug ON if you use local assets
     if (engrid_ENGrid.getBodyData("assets") === "local" && engrid_ENGrid.getUrlParameter("debug") !== "false" && engrid_ENGrid.getUrlParameter("debug") !== "log") {
@@ -21100,127 +21092,6 @@ class src_App {
       // Enable debug if available is the first thing
       engrid_ENGrid.setBodyData("debug", "");
     new DataAttributes();
-    new Advocacy();
-    new InputPlaceholders();
-    new InputHasValueAndFocus();
-    new ShowHideRadioCheckboxes("transaction.giveBySelect", "giveBySelect-");
-    new ShowHideRadioCheckboxes("transaction.inmem", "inmem-");
-    new ShowHideRadioCheckboxes("transaction.recurrpay", "recurrpay-");
-
-    // Automatically show/hide all radios
-    let radioFields = [];
-    const allRadios = document.querySelectorAll("input[type=radio]");
-    allRadios.forEach(radio => {
-      if ("name" in radio && radioFields.includes(radio.name) === false) {
-        radioFields.push(radio.name);
-      }
-    });
-    radioFields.forEach(field => {
-      new ShowHideRadioCheckboxes(field, "engrid__" + field.replace(/\./g, "") + "-");
-    });
-
-    // Automatically show/hide all checkboxes
-    const allCheckboxes = document.querySelectorAll("input[type=checkbox]");
-    allCheckboxes.forEach(checkbox => {
-      if ("name" in checkbox) {
-        new ShowHideRadioCheckboxes(checkbox.name, "engrid__" + checkbox.name.replace(/\./g, "") + "-");
-      }
-    });
-
-    // Client onSubmit and onError functions
-    this._form.onSubmit.subscribe(() => this.onSubmit());
-    this._form.onError.subscribe(() => this.onError());
-    this._form.onValidate.subscribe(() => this.onValidate());
-
-    // Event Listener Examples
-    this._amount.onAmountChange.subscribe(s => this.logger.success(`Live Amount: ${s}`));
-    this._frequency.onFrequencyChange.subscribe(s => {
-      this.logger.success(`Live Frequency: ${s}`);
-      setTimeout(() => {
-        this._amount.load();
-      }, 150);
-    });
-    this._form.onSubmit.subscribe(s => this.logger.success("Submit: " + JSON.stringify(s)));
-    this._form.onError.subscribe(s => this.logger.danger("Error: " + JSON.stringify(s)));
-    this._country.onCountryChange.subscribe(s => this.logger.success(`Country: ${s}`));
-    window.EnOnSubmit = () => {
-      this._form.submit = true;
-      this._form.submitPromise = false;
-      this._form.dispatchSubmit();
-      engrid_ENGrid.watchForError(engrid_ENGrid.enableSubmit);
-      if (!this._form.submit) return false;
-      if (this._form.submitPromise) return this._form.submitPromise;
-      this.logger.success("enOnSubmit Success");
-      // If all validation passes, we'll watch for Digital Wallets Errors, which
-      // will not reload the page (thanks EN), so we will enable the submit button if
-      // an error is programmatically thrown by the Digital Wallets
-      return true;
-    };
-    window.EnOnError = () => {
-      this._form.dispatchError();
-    };
-    window.EnOnValidate = () => {
-      this._form.validate = true;
-      this._form.validatePromise = false;
-      this._form.dispatchValidate();
-      if (!this._form.validate) return false;
-      if (this._form.validatePromise) return this._form.validatePromise;
-      this.logger.success("Validation Passed");
-      return true;
-    };
-
-    // Live Variables
-    new LiveVariables(this.options);
-
-    // Amount Labels
-    new AmountLabel();
-
-    // Engrid Data Replacement
-    new DataReplace();
-
-    // ENgrid Hide Script
-    new DataHide();
-
-    // Autosubmit script
-    new Autosubmit();
-
-    // On the end of the script, after all subscribers defined, let's load the current frequency
-    // The amount will be loaded by the frequency change event
-    // This timeout is needed because when you have alternative amounts, EN is slower than Engrid
-    // about 20% of the time and we get a race condition if the client is also using the SwapAmounts feature
-    window.setTimeout(() => {
-      this._frequency.load();
-    }, 1000);
-
-    // Currency Related Components
-    new LiveCurrency();
-    new CustomCurrency();
-
-    // Auto Country Select
-    new AutoCountrySelect();
-
-    // Auto Year Class
-    if (this.options.AutoYear) new AutoYear();
-    // Autocomplete Class
-    new Autocomplete();
-    new ShowIfAmount();
-    new OtherAmount();
-    new A11y();
-
-    // Url Params to Form Fields
-    new UrlToForm();
-
-    //Debug hidden fields
-    if (this.options.Debug) new DebugHiddenFields();
-
-    // Translate Fields
-    if (this.options.TranslateFields) new TranslateFields();
-
-    // Live Frequency
-    new LiveFrequency();
-
-    // Very Good Security
-    new VGS();
     engrid_ENGrid.setBodyData("data-engrid-scripts-js-loading", "finished");
     window.EngridVersion = AppVersion;
     this.logger.success(`VERSION: ${AppVersion}`);
@@ -21246,24 +21117,6 @@ class src_App {
   onResize() {
     if (this.options.onResize) {
       this.options.onResize();
-    }
-  }
-  onValidate() {
-    if (this.options.onValidate) {
-      this.logger.log("Client onValidate Triggered");
-      this.options.onValidate();
-    }
-  }
-  onSubmit() {
-    if (this.options.onSubmit) {
-      this.logger.log("Client onSubmit Triggered");
-      this.options.onSubmit();
-    }
-  }
-  onError() {
-    if (this.options.onError) {
-      this.logger.danger("Client onError Triggered");
-      this.options.onError();
     }
   }
   static log(message) {
