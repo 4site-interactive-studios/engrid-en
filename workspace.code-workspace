@@ -1,14 +1,14 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "../engrid-scripts"
-		}
-	],
-	"settings": {
-		"liveServer.settings.multiRootWorkspaceName": "engrid-en",
-		"liveServer.settings.port": 5501
-	}
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "../engrid"
+    }
+  ],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "engrid-en",
+    "liveServer.settings.port": 5501
+  }
 }

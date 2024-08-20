@@ -1,135 +1,37 @@
 import "./sass/main.scss";
 
-import {
-  Loader,
-  ENGrid,
-  Options,
-  OptionsDefaults,
-  DataAttributes,
-  EngridLogger,
-  AppVersion,
-} from "@4site/engrid-common";
+import { EN, DataAttributes } from "./lib";
 
 class App {
-  private options: Options;
   private isOneClickDonation: boolean = false;
 
-  private logger = new EngridLogger("App", "black", "white", "🍏");
-
-  constructor(options: Options) {
-    const loader = new Loader();
-    this.options = { ...OptionsDefaults, ...options };
-    this.isOneClickDonation = ENGrid.getField("donationLogId") ? true : false;
-    // Add Options to window
-    (window as any).EngridOptions = this.options;
-    if (loader.reload()) return;
-    // Turn Debug ON if you use local assets
-    if (
-      ENGrid.getBodyData("assets") === "local" &&
-      ENGrid.getUrlParameter("debug") !== "false" &&
-      ENGrid.getUrlParameter("debug") !== "log"
-    ) {
-      (window as any).EngridOptions.Debug = true;
+  constructor() {
+    this.isOneClickDonation = EN.getField("donationLogId") ? true : false;
+    // Turn Debug ON
+    if (EN.getUrlParameter("debug") === "true") {
+      (window as any).Debug = true;
     }
 
     // Document Load
     if (document.readyState !== "loading") {
-      this.isOneClickDonation ? this.runOnOneClickDonation() : this.run();
+      this.isOneClickDonation && this.runOnOneClickDonation();
     } else {
       document.addEventListener("DOMContentLoaded", () => {
-        this.isOneClickDonation ? this.runOnOneClickDonation() : this.run();
+        this.isOneClickDonation && this.runOnOneClickDonation();
       });
-    }
-    // Window Resize
-    window.onresize = () => {
-      this.onResize();
-    };
-  }
-
-  private run() {
-    if (
-      !ENGrid.checkNested(
-        (window as any).EngagingNetworks,
-        "require",
-        "_defined",
-        "enjs"
-      )
-    ) {
-      this.logger.danger("Engaging Networks JS Framework NOT FOUND");
-      setTimeout(() => {
-        this.run();
-      }, 100);
-      return;
-    }
-    // If there's an option object on the page, override the defaults
-    if (window.hasOwnProperty("EngridPageOptions")) {
-      this.options = { ...this.options, ...(window as any).EngridPageOptions };
-      // Add Options to window
-      (window as any).EngridOptions = this.options;
-    }
-
-    // If there's no pageJson.pageType, add a big red warning to the console
-    if (!ENGrid.checkNested(window, "pageJson", "pageType")) {
-      window.setTimeout(() => {
-        console.log(
-          "%c ⛔️ pageJson.pageType NOT FOUND - Go to the Account Settings and Expose the Transaction Details %s",
-          "background-color: red; color: white; font-size: 22px; font-weight: bold;",
-          "https://knowledge.engagingnetworks.net/datareports/expose-transaction-details-pagejson"
-        );
-      }, 2000);
-    }
-
-    if (this.options.Debug || ENGrid.getUrlParameter("debug") == "true")
-      // Enable debug if available is the first thing
-      ENGrid.setBodyData("debug", "");
-
-    new DataAttributes();
-
-    ENGrid.setBodyData("data-engrid-scripts-js-loading", "finished");
-
-    (window as any).EngridVersion = AppVersion;
-    this.logger.success(`VERSION: ${AppVersion}`);
-
-    // Window Load
-    let onLoad = typeof window.onload === "function" ? window.onload : null;
-    if (document.readyState !== "loading") {
-      this.onLoad();
-    } else {
-      window.onload = (e: Event) => {
-        this.onLoad();
-        if (onLoad) {
-          onLoad.bind(window, e);
-        }
-      };
-    }
-  }
-
-  private onLoad() {
-    if (this.options.onLoad) {
-      this.options.onLoad();
-    }
-  }
-
-  private onResize() {
-    if (this.options.onResize) {
-      this.options.onResize();
     }
   }
 
   public static log(message: string) {
-    const logger = new EngridLogger("Client", "brown", "aliceblue", "🍪");
-    logger.log(message);
+    return console.log(
+      "%c 4️⃣ %s",
+      `color: #fefefe; background-color: #333; font-size: 1.2em; padding: 4px; border-radius: 2px; font-family: monospace;`,
+      message
+    );
   }
 
   private runOnOneClickDonation() {
     App.log("One Click Donation Page");
-
-    // If there's an option object on the page, override the defaults
-    if (window.hasOwnProperty("EngridPageOptions")) {
-      this.options = { ...this.options, ...(window as any).EngridPageOptions };
-      // Add Options to window
-      (window as any).EngridOptions = this.options;
-    }
 
     const getCurrencyPosition = () => {
       return (window as any).CurrencyPosition &&
@@ -144,7 +46,7 @@ class App {
       ) as HTMLInputElement;
       if (!amount) return "0";
       if (amount.value === "other") {
-        const otherAmount = ENGrid.getField(
+        const otherAmount = EN.getField(
           "transaction.donationAmt.other"
         ) as HTMLInputElement;
         if (otherAmount) {
@@ -163,21 +65,18 @@ class App {
       if (submitButton) {
         submitButton.value = (window as any).SubmitLabel.replace(
           "$AMOUNT",
-          ENGrid.cleanAmount(getAmount())
-        ).replace(
-          "$CURRENCY",
-          ENGrid.getCurrencySymbol() || this.options.CurrencySymbol
-        );
+          EN.cleanAmount(getAmount())
+        ).replace("$CURRENCY", EN.getCurrencySymbol() || "");
       }
     };
-    ENGrid.setBodyData("page-type", "one-click-donation");
+    EN.setBodyData("page-type", "one-click-donation");
 
     new DataAttributes();
     // Fix the amount labels
     let amountButtons = document.querySelectorAll(
       ".enDonationAmount__buttons .en__field__item"
     ) as NodeListOf<HTMLLabelElement>;
-    const currencySymbol = ENGrid.getCurrencySymbol() || "";
+    const currencySymbol = EN.getCurrencySymbol() || "";
     amountButtons.forEach((element) => {
       const label = element.querySelector("label") as HTMLLabelElement;
       if (label && !isNaN(label.innerText as any)) {
@@ -211,7 +110,7 @@ class App {
     if (otherFieldContainer) {
       otherFieldContainer.setAttribute(
         "data-currency-symbol",
-        ENGrid.getCurrencySymbol()
+        EN.getCurrencySymbol()
       );
       otherFieldContainer.setAttribute(
         "data-currency-position",
@@ -223,12 +122,4 @@ class App {
   }
 }
 
-const options: Options = {
-  CurrencySymbol: "$",
-  CurrencySeparator: ".",
-  Debug: ENGrid.getUrlParameter("debug") == "true" ? true : false,
-  onLoad: () => console.log("EN Free & Flexible Theme Loaded"),
-  onResize: () => console.log("EN Free & Flexible Theme Window Resized"),
-};
-
-new App(options);
+new App();

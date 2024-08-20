@@ -6,10 +6,6 @@ let engridScriptStylesVersion = exec("npm list @4site/engrid-styles")
   .toString("utf8")
   .split("@4site/engrid-styles@")[1]
   .split("\n")[0];
-const engridScriptScriptsVersion = exec("npm list @4site/engrid-common")
-  .toString("utf8")
-  .split("@4site/engrid-common@")[1]
-  .split("\n")[0];
 const localeStringDateOptions = {
   weekday: "long",
   year: "numeric",
@@ -63,7 +59,7 @@ module.exports = {
  )} @ ${new Date().toLocaleString("en-US", localeStringTimeOptions)} ET
  By: ${author}
  ENGrid styles: v${engridScriptStylesVersion}
- ENGrid scripts: v${engridScriptScriptsVersion}
+ ENGrid scripts: custom
  
  Created by 4Site Studios
  Come work with us or join our team, we would love to hear from you
