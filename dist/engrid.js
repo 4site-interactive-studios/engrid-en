@@ -17,7 +17,7 @@
  *
  *  ENGRID PAGE TEMPLATE ASSETS
  *
- *  Date: Tuesday, August 20, 2024 @ 16:25:45 ET
+ *  Date: Wednesday, August 21, 2024 @ 11:40:17 ET
  *  By: fernando
  *  ENGrid styles: v0.19.1
  *  ENGrid scripts: custom
@@ -254,7 +254,9 @@ class App {
     this.isOneClickDonation = EN.getField("donationLogId") ? true : false;
     // Turn Debug ON
     if (EN.getUrlParameter("debug") === "true") {
-      window.Debug = true;
+      window.debug = true;
+    } else {
+      window.debug = false;
     }
 
     // Document Load
@@ -267,7 +269,7 @@ class App {
     }
   }
   static log(message) {
-    return console.log("%c 4️⃣ %s", `color: #fefefe; background-color: #333; font-size: 1.2em; padding: 4px; border-radius: 2px; font-family: monospace;`, message);
+    return EN.debug && console.log("%c 4️⃣ %s", `color: #fefefe; background-color: #333; font-size: 1.2em; padding: 4px; border-radius: 2px; font-family: monospace;`, message);
   }
   runOnOneClickDonation() {
     App.log("One Click Donation Page");

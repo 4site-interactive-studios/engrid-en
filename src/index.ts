@@ -9,7 +9,9 @@ class App {
     this.isOneClickDonation = EN.getField("donationLogId") ? true : false;
     // Turn Debug ON
     if (EN.getUrlParameter("debug") === "true") {
-      (window as any).Debug = true;
+      (window as any).debug = true;
+    } else {
+      (window as any).debug = false;
     }
 
     // Document Load
@@ -23,10 +25,13 @@ class App {
   }
 
   public static log(message: string) {
-    return console.log(
-      "%c 4️⃣ %s",
-      `color: #fefefe; background-color: #333; font-size: 1.2em; padding: 4px; border-radius: 2px; font-family: monospace;`,
-      message
+    return (
+      EN.debug &&
+      console.log(
+        "%c 4️⃣ %s",
+        `color: #fefefe; background-color: #333; font-size: 1.2em; padding: 4px; border-radius: 2px; font-family: monospace;`,
+        message
+      )
     );
   }
 
